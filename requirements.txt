@@ -1,0 +1,7 @@
+pygame
+pygame-menu
+brainflow
+torch
+pyzmq
+matplotlib
+mne

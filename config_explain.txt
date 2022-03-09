@@ -1,0 +1,50 @@
+{
+        "output_dir" : "G:/공유 드라이브/4N/Data/Pong",  // 출력 파일 경로
+    "-------- decoder parameters --------" : "",
+        "HOST" : "127.0.0.1",                           // 디코더 소켓 ip주소
+        "device" : "cuda",                              // 디코더 torch gpu 옵션, "cpu" 또는 "cuda"
+        "pretrained_model" : "res/model.weights",       // 디코더 모델 weight파일 경로
+    "-------- pong parameters --------": "",
+        "FPS" : 60,                                     // Pong게임 프레임 (게임속도)
+        "WINDOW_SIZE" : [1280, 720],                    // Pong게임 창 크기
+        "PORT_APP" : 9999,                              // Pong게임에서 디코더에 접속할 포트 (디코더에서 여는 포트)
+        "difficulty" : 0,                               // 난이도 (0=뇌파안씀, 1=뇌파만씀)
+        "threshold_up" : 0.3,                           // 디코더 output>th_up 이면 위로 이동
+        "threshold_down" : -0.3,                        // 디코더 output<th_down 이면 아래로 이동
+        "num_trials_train" : 20,                        // training 세션당 trial 수
+        "num_trials_test" : 20,                         // test 세션당 trial 수
+        "wait_fix" : 2000,                              // fixation 시간
+        "wait_during_test" : 50,                        // test중에 wait시간 (반응속도/성능 이슈)
+        "wait_end_trial" : 1000,                        // trial 끝나고 fix전까지 대기시간
+        "wait_training_move" : 1000,                    // training에서 점 이동 시간 간격
+    "-------- eeg parameters --------" : "",
+        "PORT_EEG" : 9998,                              // EEG앱에서 디코더에 접속할 포트 (디코더에서 여는 포트)
+        "serial_port" : "COM4",                         // OPENBCI 시리얼 포트
+        "board_id" : 2,                                 // 보드 id (CYTON_DAISY=2, https://brainflow.readthedocs.io/en/stable/UserAPI.html#brainflow-board-shim)
+        "sfreq" : 125,                                  // 보드 sampling rate
+        "eeg_channels" : [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],  // 사용할 채널 번호 (get_eeg_channels(board_id: int) → List[int] 참조)
+        "filt" : {                                      // 전처리 필터 옵션
+            "l_freq" : 0.5,
+            "h_freq" : 45,
+            "method" : "iir"
+        },
+        "prewait_seconds" : 1.5,                        // EEG그래프 출력 전 대기시간 (전처리 최소 데이터 확보)
+        "dt_measure" : 0.5,                             // 한번에 획득할 데이터 길이 (초)
+        "dt_sleep" : 0.5,                               // 데이터 획득 시간 간격 (초)
+        "chnum_plot" : 6,                               // 그래프 그릴 채널 수 (eeg_channels의 앞부터 순서대로 출력함)
+        "plotlen" : 1000,                               // eeg timeseries 그릴 포인트 수
+        "cutratio" : 0.2,                               // timeseries 출력 전에 데이터 자르는 비율 (필터 edge효과 가릴 용도), 양쪽 다 cutratio비율만큼 삭제 (cutratio<0.5)
+        "figsize_inches" : [16, 9],                     // EEG창 크기 (인치)
+        "colorlist" : ["b", "g", "r", "c", "m", "y"],   // 채널별 그래프 색
+        "FPS_EEG" : 100,                                // EEG 그래프 프레임
+        "eeg_ylim" : [-100, 100],                       // EEG timesreis y축범위
+        "psd_ylim" : [0, 500],                          // EEG psd y축범위
+        "band_ylim" : [0, 800],                         // EEG band y축범위
+        "band_fontsize" : 8.4,                          // EEG band x축 폰트크기
+        "plot_nfft" : 128,                              // EEG 필터 nfft
+        "bands" : [[0, 4, "Delta"],                     // EEG band 주파수범위와 이름 (Hz)
+                    [4, 8, "Theta"],
+                    [8, 12, "Alpha"],
+                    [12, 30, "Beta"],
+                    [30, 45, "Gamma"]]
+}
