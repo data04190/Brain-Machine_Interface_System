@@ -8,7 +8,7 @@ from config import load_parameters
 HOST = '127.0.0.1'
 PORT_APP = 9999
 PORT_EEG = 9998
-eeg_channels = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
+eeg_channels = [1,2,3,4,5,6]
 load_parameters(globals())
 
 # parameters, not loaded by config.json

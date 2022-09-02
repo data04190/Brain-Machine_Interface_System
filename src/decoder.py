@@ -9,7 +9,7 @@ from config import load_parameters
 device = 'cuda'
 board_id = BoardIds.CYTON_DAISY_BOARD.value
 sfreq = BoardShim.get_sampling_rate(board_id)
-eeg_channels = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
+eeg_channels = [1,2,3,4,5,6]
 filt = {'l_freq':.5, 'h_freq':45, 'method':'iir'}
 pretrained_model = "res/model.weights"  # not available yet
 load_parameters(globals())
